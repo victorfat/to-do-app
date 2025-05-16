@@ -12,26 +12,31 @@ class TodoSplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Welcome to \n TODO App',
-            style: TextStyle(
-              fontSize: 48,
-              fontWeight: FontWeight.bold,
-              color: Colors.white  
-            ),),
-            SizedBox(
-              height: 15,
+            Text(
+              'Welcome to \n TODO App',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
+            SizedBox(height: 15),
             FilledButton(
               style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.white)
+                backgroundColor: WidgetStatePropertyAll(Colors.white),
               ),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => TodoScreen()) );
-              }, child: Text('Start',
-            style: TextStyle(
-              fontSize: 21,
-              color: Colors.blueAccent
-            ),))
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TodoScreen()),
+                );
+              },
+              child: Text(
+                'Start',
+                style: TextStyle(fontSize: 21, color: Colors.blueAccent),
+              ),
+            ),
           ],
         ),
       ),
