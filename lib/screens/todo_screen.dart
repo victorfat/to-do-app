@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/models/todo_model.dart';
 import 'package:myapp/widgets/todo_bottom_sheet.dart';
+import 'package:myapp/widgets/todo_container.dart';
 
 class TodoScreen extends StatefulWidget {
   const TodoScreen({super.key});
@@ -9,6 +11,8 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
+  List<Todo> todos = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,21 +29,39 @@ class _TodoScreenState extends State<TodoScreen> {
         centerTitle: false,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
+        onPressed: onAddPressed,
+        shape: CircleBorder(),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+        child: Icon(Icons.add),
+      ),
+      body: Column(
+        children: [
+          for (int index = 0; index < todos.length; index++)
+            TodoContainer(
+              todo: todos[index],
+              isSelected: true,
+              onTodoChanged: (bool newValue) {},
+            ),
+        ],
+      ),
+    );
+  }
+
+  void onAddPressed () async{
+          final result = await showModalBottomSheet(
             context: context,
             scrollControlDisabledMaxHeightRatio: 0.7,
             builder: (context) {
               return TodoBottomSheet();
             },
           );
-        },
-        shape: CircleBorder(),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        child: Icon(Icons.add),
-      ),
-      body: Column(children: []),
-    );
+          if (result != null && result is String) {
+            setState(() {
+              todos.add(Todo(content: result,isDone: false));
+              print(todos);
+            });
+          }
+        }
   }
-}
+

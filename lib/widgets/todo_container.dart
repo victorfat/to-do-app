@@ -14,17 +14,17 @@ class TodoContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
+    return ListTile(
+        leading:
           Checkbox(
-            value: isSelected,
+            value: todo.isDone,
             onChanged: (bool? newValue){
-              
+              if (newValue != null){
+                onTodoChanged(newValue);
+              }
             },
-          )
-        ],
-      ),
-    );
+          ),
+          title: Text(todo.content),
+      );
   }
 }
