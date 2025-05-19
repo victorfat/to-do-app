@@ -13,7 +13,7 @@ class ChoiceScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              style: ButtonStyle(
+              style: ButtonStyle(fixedSize: WidgetStatePropertyAll(Size(150,40)) ,
                 backgroundColor: WidgetStatePropertyAll(Colors.blue),
                 foregroundColor: WidgetStatePropertyAll(Colors.white),
               ),
