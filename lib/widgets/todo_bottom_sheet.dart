@@ -41,7 +41,7 @@ class _TodoBottomSheetState extends State<TodoBottomSheet> {
                 'Add Todo',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
-              TextField(controller: _controller),
+              TextField(controller: _controller, autofocus: true,),
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {

@@ -40,28 +40,34 @@ class _TodoScreenState extends State<TodoScreen> {
           for (int index = 0; index < todos.length; index++)
             TodoContainer(
               todo: todos[index],
-              isSelected: true,
-              onTodoChanged: (bool newValue) {},
+              onTodoChanged: (bool newValue) {
+                Todo newTodo = Todo(
+                  content: todos[index].content,
+                  isDone: !todos[index].isDone,
+                );
+                setState(() {
+                todos[index] = newTodo;
+                });
+                },
             ),
         ],
       ),
     );
   }
 
-  void onAddPressed () async{
-          final result = await showModalBottomSheet(
-            context: context,
-            scrollControlDisabledMaxHeightRatio: 0.7,
-            builder: (context) {
-              return TodoBottomSheet();
-            },
-          );
-          if (result != null && result is String) {
-            setState(() {
-              todos.add(Todo(content: result,isDone: false));
-              print(todos);
-            });
-          }
-        }
+  void onAddPressed() async {
+    final result = await showModalBottomSheet(
+      context: context,
+      scrollControlDisabledMaxHeightRatio: 0.7,
+      builder: (context) {
+        return TodoBottomSheet();
+      },
+    );
+    if (result != null && result is String) {
+      setState(() {
+        todos.add(Todo(content: result, isDone: false));
+        print(todos);
+      });
+    }
   }
-
+}
